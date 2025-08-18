@@ -9,7 +9,7 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
     password = Column(String)
-    role = Column(String, default="staff")  # admin, staff
+    role = Column(String, default="staff")  # admin, staff1
 
 class Product(Base):
     __tablename__ = "products"
