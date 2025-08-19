@@ -2,40 +2,37 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 
+# Users
 class UserCreate(BaseModel):
     username: str
     password: str
-    role: str
+    role: Optional[str] = "staff"
 
 class UserOut(BaseModel):
-    id: int
+    id: str
     username: str
     role: str
-    class Config:
-        orm_mode = True
 
+# Products
 class ProductCreate(BaseModel):
     name: str
     price: float
     stock: int
 
 class ProductOut(BaseModel):
-    id: int
+    id: str
     name: str
     price: float
     stock: int
-    class Config:
-        orm_mode = True
 
+# Sales
 class SaleCreate(BaseModel):
-    product_id: int
+    product_id: str
     quantity: int
 
 class SaleOut(BaseModel):
-    id: int
-    product_id: int
+    id: str
+    product_id: str
     quantity: int
     total_price: float
     date: datetime
-    class Config:
-        orm_mode = True
