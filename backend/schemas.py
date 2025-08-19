@@ -12,7 +12,7 @@ class UserOut(BaseModel):
     username: str
     role: str
     class Config:
-        orm_mode = True
+        from_attributes = True # <-- Corrected line
 
 class ProductCreate(BaseModel):
     name: str
@@ -25,7 +25,7 @@ class ProductOut(BaseModel):
     price: float
     stock: int
     class Config:
-        orm_mode = True
+        from_attributes = True # <-- Corrected line
 
 class SaleCreate(BaseModel):
     product_id: int
@@ -38,4 +38,4 @@ class SaleOut(BaseModel):
     total_price: float
     date: datetime
     class Config:
-        orm_mode = True
+        from_attributes = True # <-- Corrected line
