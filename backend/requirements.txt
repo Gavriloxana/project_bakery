@@ -6,3 +6,4 @@ python-jose
 pydantic
 mongoengine
 dnspython
+python-multipart
