@@ -1,20 +1,20 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
-from sqlalchemy import func
+from fastapi import APIRouter
 import models
-from database import get_db
 
 router = APIRouter()
 
+
 @router.get("/sales")
-def sales_report(db: Session = Depends(get_db)):
-    sales = db.query(
-        func.sum(models.Sale.total_price).label("total_sales"),
-        func.count(models.Sale.id).label("total_transactions")
-    ).first()
-    return {"total_sales": sales.total_sales or 0, "total_transactions": sales.total_transactions or 0}
+def sales_report():
+    total_sales = 0.0
+    total_transactions = 0
+    sales = models.Sale.objects()
+    total_transactions = sales.count()
+    total_sales = sum(s.total_price for s in sales)
+    return {"total_sales": total_sales, "total_transactions": total_transactions}
+
 
 @router.get("/stock")
-def stock_report(db: Session = Depends(get_db)):
-    products = db.query(models.Product).all()
+def stock_report():
+    products = models.Product.objects()
     return [{"name": p.name, "stock": p.stock} for p in products]

@@ -1,0 +1,117 @@
+{
+    "info": {
+      "name": "POS MongoDB API",
+      "_postman_id": "pos-mongodb-collection",
+      "description": "Test collection สำหรับ POS MongoDB + FastAPI",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Create User",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\",\n  \"role\": \"admin\"\n}"
+          },
+          "url": {
+            "raw": "http://localhost:8000/users/",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8000",
+            "path": ["users", ""]
+          }
+        }
+      },
+      {
+        "name": "Get Users",
+        "request": {
+          "method": "GET",
+          "url": {
+            "raw": "http://localhost:8000/users/",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8000",
+            "path": ["users", ""]
+          }
+        }
+      },
+      {
+        "name": "Create Product",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Coffee\",\n  \"price\": 50.0,\n  \"stock\": 100\n}"
+          },
+          "url": {
+            "raw": "http://localhost:8000/products/",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8000",
+            "path": ["products", ""]
+          }
+        }
+      },
+      {
+        "name": "Update Product",
+        "request": {
+          "method": "PUT",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Latte\",\n  \"price\": 60.0,\n  \"stock\": 80\n}"
+          },
+          "url": {
+            "raw": "http://localhost:8000/products/{{product_id}}",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8000",
+            "path": ["products", "{{product_id}}"]
+          }
+        }
+      },
+      {
+        "name": "Delete Product",
+        "request": {
+          "method": "DELETE",
+          "url": {
+            "raw": "http://localhost:8000/products/{{product_id}}",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8000",
+            "path": ["products", "{{product_id}}"]
+          }
+        }
+      },
+      {
+        "name": "Create Sale",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"product_id\": \"{{product_id}}\",\n  \"quantity\": 2\n}"
+          },
+          "url": {
+            "raw": "http://localhost:8000/pos/",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "8000",
+            "path": ["pos", ""]
+          }
+        }
+      }
+    ]
+  }
+  
