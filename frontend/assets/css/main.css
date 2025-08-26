@@ -1,6 +1,103 @@
+@font-face { font-family: 'Edu';
+    src: url('@/assets/fonts/EduNSWACTFoundation-Regular.ttf') format('truetype');
+  }
+@font-face { font-family: 'Dance';
+    src: url('@/assets/fonts/DancingScript-VariableFont_wght.ttf') format('truetype');
+  }
 @import "tailwindcss";
-:root{--brand:#4f46e5;--brand-600:#4f46e5;--brand-700:#4338ca}
-html,body{background:#f6f8fb;color:#0f172a}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .75rem;border-radius:.5rem;background:var(--brand-600);color:#fff}
-.btn:hover{background:var(--brand-700)}
-.card{background:#fff;border-radius:.5rem;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+ 
+
+
+:root {
+  --bakery-cream: #fef3c7;
+  --bakery-light-cream: #fef7e0;
+  --bakery-brown: #8b4513;
+  --bakery-light-brown: #d2691e;
+  --bakery-warm-brown: #cd853f;
+  --bakery-pastel-pink: #fce7f3;
+  --bakery-soft-pink: #fdf2f8;
+  --bakery-warm-pink: #fbbf24;
+  --bakery-mint: #d1fae5;
+  --bakery-peach: #fed7aa;
+}
+
+html, body {
+  background: linear-gradient(135deg, var(--bakery-cream) 0%, var(--bakery-pastel-pink) 100%);
+  color: #8b4513;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes bounce-soft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-bounce-soft {
+  animation: bounce-soft 2s ease-in-out infinite;
+}
+
+/* Wave divider */
+.wave-divider {
+  position: relative;
+  height: 60px;
+  overflow: hidden;
+}
+
+.wave-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23ffffff'%3E%3C/path%3E%3C/svg%3E");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Gradient backgrounds */
+.bg-bakery-gradient {
+  background: linear-gradient(135deg, var(--bakery-pastel-pink) 0%, var(--bakery-cream) 25%, var(--bakery-light-cream) 50%, var(--bakery-soft-pink) 75%, var(--bakery-mint) 100%);
+}
+
+.bg-hero-gradient {
+  background: linear-gradient(135deg, #fce7f3 0%, #fef3c7 25%, #fef7e0 50%, #fdf2f8 75%, #d1fae5 100%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bakery-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bakery-light-brown);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bakery-brown);
+}
+
+@theme {
+    --font-edu: Edu , "sans-serif";
+
+}
+@theme {
+    --font-dance: Dance , "sans-serif";
+
+}
+
