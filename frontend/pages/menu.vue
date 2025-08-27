@@ -140,7 +140,7 @@ const fetchProducts = async () => {
     console.log('Products fetched successfully:', products.value)
   } catch (error) {
     console.error('Error fetching products:', error)
-    // Handle error gracefully
+    // Handle error gracefully;
     products.value = []
   }
 }
