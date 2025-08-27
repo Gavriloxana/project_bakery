@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: PROJECT-BAKERy-backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: ${VITE_API_URL}   # << ดึงจาก .env ภายนอกqfqwfqwf
+    container_name: PROJECT-BAKERy-fontend
+    env_file:
+      - ./frontend/.env                # ใช้ตอน runtime
+    ports:
+      - "8100:3000"
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

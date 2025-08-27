@@ -1,8 +1,8 @@
 @font-face { font-family: 'Edu';
-    src: url('@/assets/fonts/EduNSWACTFoundation-Regular.ttf') format('truetype');
+    src: url('./assets/fonts/EduNSWACTFoundation-Regular.ttf') format('truetype');
   }
 @font-face { font-family: 'Dance';
-    src: url('@/assets/fonts/DancingScript-VariableFont_wght.ttf') format('truetype');
+    src: url('./assets/fonts/DancingScript-VariableFont_wght.ttf') format('truetype');
   }
 @import "tailwindcss";
  
