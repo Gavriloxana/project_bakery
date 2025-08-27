@@ -13,7 +13,7 @@ class UserOut(BaseModel):
     username: str
     role: str
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # Products
 class ProductCreate(BaseModel):
@@ -29,7 +29,7 @@ class ProductOut(BaseModel):
     stock: int
     image_url: str
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # Sales
 class SaleCreate(BaseModel):
@@ -43,7 +43,7 @@ class SaleOut(BaseModel):
     total_price: float
     date: datetime
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # Orders
@@ -72,4 +72,4 @@ class OrderOut(BaseModel):
     date: datetime
     table: str
     class Config:
-        orm_mode = True
+        from_attributes = True
