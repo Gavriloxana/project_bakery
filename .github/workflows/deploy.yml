@@ -48,7 +48,7 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd ~/99s-daily-notes
+          cd ~/bakery
           docker pull kanaferni/bakery-backend:latest
           docker pull kanaferni/bakery-frontend:latest
           docker compose down
