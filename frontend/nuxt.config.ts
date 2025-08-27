@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     public: {
-      apiBase: 'https://api-bakery.loeitech.org'
+      apiBase: 'https://lab.loeitech.org'
     }
   },
   vite: {
