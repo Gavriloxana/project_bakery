@@ -6,7 +6,7 @@ from users import router as users_router
 from products import router as products_router
 from pos import router as pos_router
 from reports import router as reports_router
-import database  # ensure Mongo connection
+import database  # ensure Mongo connectionnnn
 
 app = FastAPI()
 
