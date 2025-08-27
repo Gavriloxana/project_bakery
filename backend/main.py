@@ -21,6 +21,9 @@ origins = [
     "http://localhost:8100",
     "http://192.168.10.118:8000",
     "http://192.168.10.118:8100",
+    "https://api-bakery.loeitech.org/"
+    
+
 ]
 
 app.add_middleware(
