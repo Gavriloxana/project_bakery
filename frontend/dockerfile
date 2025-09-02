@@ -1,23 +1,22 @@
-FROM node:20
-
+# frontend/Dockerfile
+FROM node:20-alpine AS build
 WORKDIR /app
 
-# Build-time environment variable1
-ARG VITE_API_URL
-ENV VITE_API_URL=$VITE_API_URL
-
-# สร้างไฟล์ .env โดยใช้ ARG
-RUN echo "VITE_API_URL=$VITE_API_URL" > .env
-
-# ติดตั้ง dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
-# คัดลอกไฟล์โปรเจกต์ g
 COPY . .
+# อ่านค่า (ถ้ามี) ตอน build เพื่อ generate หน้า SSR/static ที่อ้างอิง ENV
+ARG NUXT_PUBLIC_API_BASE
+ENV NUXT_PUBLIC_API_BASE=${NUXT_PUBLIC_API_BASE}
 
-# Build Nuxt project (จะอ่านค่า .env ที่เราสร้าง)
 RUN npm run build
 
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=build /app/.output ./.output
+
+ENV NITRO_PORT=3000
 EXPOSE 3000
-CMD ["npm", "run", "start"]
+
+CMD ["node", ".output/server/index.mjs"]

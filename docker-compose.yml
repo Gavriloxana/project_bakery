@@ -1,12 +1,13 @@
+# docker-compose.yml
+version: "3.9"
+
 services:
   backend:
     build:
       context: ./backend
-    container_name: PROJECT-BAKERy-backend
-    env_file:
-      - ./backend/.env
+    container_name: project-bakery-backend
     ports:
-      - "8000:8000"
+      - "8000:8000"   # << ใช้ 8000 ให้ตรงกับ uvicorn
     restart: unless-stopped
     networks:
       - app-network
@@ -15,12 +16,18 @@ services:
     build:
       context: ./frontend
       args:
-        VITE_API_URL: ${VITE_API_URL}   # << ดึงจาก .env ภายนอกqfqwfqwf
-    container_name: PROJECT-BAKERy-fontend
-    env_file:
-      - ./frontend/.env                # ใช้ตอน runtime
+        # ใส่ค่า NUXT_PUBLIC_API_BASE ตอน build ได้ (optional)
+        # ถ้าไม่ได้ใส่ ณ ตอน build จะอ่านจาก ENV ตอนรันแทนด้านล่าง
+        NUXT_PUBLIC_API_BASE: "http://backend:8000"
+    container_name: project-bakery-frontend
+    environment:
+      # สำหรับรันจริง ให้เปลี่ยนเป็นโดเมนโปรดักชัน เช่น:
+      # NUXT_PUBLIC_API_BASE=https://api-bakery.loeitech.org
+      - NUXT_PUBLIC_API_BASE=http://backend:8000
     ports:
-      - "8100:3000"
+      - "8100:3000"   # เปิดเว็บที่ http://localhost:8100
+    depends_on:
+      - backend
     restart: unless-stopped
     networks:
       - app-network
