@@ -252,8 +252,8 @@
 import { ref, onMounted, computed } from 'vue'
 definePageMeta({ middleware: ['auth'] })
 
-const config = useRuntimeConfig()
-const API = config.public.apiBase
+// ใช้ API จาก .env
+const API = import.meta.env.VITE_API_URL
 
 const loading = ref(false)
 
