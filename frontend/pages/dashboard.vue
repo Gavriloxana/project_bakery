@@ -252,7 +252,7 @@
 import { ref, onMounted, computed } from 'vue'
 definePageMeta({ middleware: ['auth'] })
 
-// กำหนด API endpoint ตรง ๆ
+// ใช้ https เท่านั้น
 const API = "https://lab.loeitech.org/"
 
 const loading = ref(false)
@@ -281,9 +281,14 @@ const grouped = computed(() => {
   return map
 })
 
+// ดึงสินค้าทั้งหมด
 const fetchProducts = async () => {
   const res = await $fetch('/products', { baseURL: API })
-  products.value = res
+  // บังคับให้ image_url เป็น https เสมอ
+  products.value = res.map(p => ({
+    ...p,
+    image_url: p.image_url ? p.image_url.replace(/^http:\/\//i, 'https://') : null
+  }))
 }
 
 const saveProduct = async () => {
@@ -311,7 +316,7 @@ const saveProduct = async () => {
     fileRef.value = null
     await fetchProducts()
   } catch (e) {
-    // ignore
+    console.error('Save product error:', e)
   } finally {
     loading.value = false
   }
@@ -379,3 +384,4 @@ function onFileChange(e) {
   if (f) fileRef.value = f
 }
 </script>
+
