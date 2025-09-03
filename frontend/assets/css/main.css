@@ -1,9 +1,11 @@
-@font-face { font-family: 'Edu';
-    src: url('./assets/fonts/EduNSWACTFoundation-Regular.ttf') format('truetype');
-  }
-@font-face { font-family: 'Dance';
-    src: url('./assets/fonts/DancingScript-VariableFont_wght.ttf') format('truetype');
-  }
+@font-face { 
+  font-family: 'Edu';
+  src: url('../fonts/EduNSWACTCursive-Regular.ttf') format('truetype');
+}
+@font-face { 
+  font-family: 'Dance';
+  src: url('../fonts/DancingScript-Regular.ttf') format('truetype');
+}
 @import "tailwindcss";
  
 
@@ -92,12 +94,12 @@ html, body {
   background: var(--bakery-brown);
 }
 
-@theme {
-    --font-edu: Edu , "sans-serif";
-
+/* Custom font classes */
+.font-edu {
+  font-family: 'Edu', sans-serif;
 }
-@theme {
-    --font-dance: Dance , "sans-serif";
 
+.font-dance {
+  font-family: 'Dance', cursive;
 }
 
