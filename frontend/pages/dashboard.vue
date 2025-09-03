@@ -283,8 +283,7 @@ const grouped = computed(() => {
 
 // ดึงสินค้าทั้งหมด
 const fetchProducts = async () => {
-  const res = await $fetch('/products', { baseURL: API })
-  // บังคับให้ image_url เป็น https เสมอ
+  const res = await $fetch('https://lab.loeitech.org/products')
   products.value = res.map(p => ({
     ...p,
     image_url: p.image_url ? p.image_url.replace(/^http:\/\//i, 'https://') : null
@@ -297,19 +296,31 @@ const saveProduct = async () => {
     if (productForm.value.id) {
       const id = productForm.value.id
       const { name, price, stock } = productForm.value
-      await $fetch(`/products/${id}`, { baseURL: API, method: 'PUT', body: { name, price, stock } })
+      await $fetch(`https://lab.loeitech.org/products/${id}`, {
+        method: 'PUT',
+        body: { name, price, stock }
+      })
       if (fileRef.value) {
         const form = new FormData()
         form.append('file', fileRef.value)
-        await $fetch(`/products/${id}/image`, { baseURL: API, method: 'POST', body: form })
+        await $fetch(`https://lab.loeitech.org/products/${id}/image`, {
+          method: 'POST',
+          body: form
+        })
       }
     } else {
       const { name, price, stock } = productForm.value
-      const created = await $fetch('/products/', { baseURL: API, method: 'POST', body: { name, price, stock } })
+      const created = await $fetch('https://lab.loeitech.org/products/', {
+        method: 'POST',
+        body: { name, price, stock }
+      })
       if (fileRef.value) {
         const form = new FormData()
         form.append('file', fileRef.value)
-        await $fetch(`/products/${created.id}/image`, { baseURL: API, method: 'POST', body: form })
+        await $fetch(`https://lab.loeitech.org/products/${created.id}/image`, {
+          method: 'POST',
+          body: form
+        })
       }
     }
     productForm.value = { id: null, name: '', price: 0, stock: 0 }
@@ -322,15 +333,10 @@ const saveProduct = async () => {
   }
 }
 
-const editProduct = (p) => {
-  productForm.value = { id: p.id, name: p.name, price: p.price, stock: p.stock }
-  fileRef.value = null
-}
-
 const removeProduct = async (id) => {
   loading.value = true
   try {
-    await $fetch(`/products/${id}`, { baseURL: API, method: 'DELETE' })
+    await $fetch(`https://lab.loeitech.org/products/${id}`, { method: 'DELETE' })
     await fetchProducts()
   } finally {
     loading.value = false
@@ -342,7 +348,10 @@ const createSale = async () => {
   saleError.value = ''
   try {
     const { product_id, quantity } = saleForm.value
-    const res = await $fetch('/pos/sale', { baseURL: API, method: 'POST', body: { product_id, quantity } })
+    const res = await $fetch('https://lab.loeitech.org/pos/sale', {
+      method: 'POST',
+      body: { product_id, quantity }
+    })
     saleMessage.value = `ขายสำเร็จ ยอดรวม ฿${res.total_price}`
     saleForm.value = { product_id: '', quantity: 1 }
     await fetchProducts()
@@ -353,21 +362,22 @@ const createSale = async () => {
 }
 
 const fetchReports = async () => {
-  const summary = await $fetch('/reports/sales', { baseURL: API })
-  reports.value = summary
-  const st = await $fetch('/reports/stock', { baseURL: API })
-  stocks.value = st
+  reports.value = await $fetch('https://lab.loeitech.org/reports/sales')
+  stocks.value = await $fetch('https://lab.loeitech.org/reports/stock')
 }
 
 const fetchOrders = async () => {
-  orders.value = await $fetch('/pos/orders', { baseURL: API })
+  orders.value = await $fetch('https://lab.loeitech.org/pos/orders')
 }
 
 const deleteTableOrders = async (table) => {
   const key = (!table || table === '-' ? '' : table)
-  await $fetch(`/pos/orders/by-table/${encodeURIComponent(key)}`, { baseURL: API, method: 'DELETE' })
+  await $fetch(`https://lab.loeitech.org/pos/orders/by-table/${encodeURIComponent(key)}`, {
+    method: 'DELETE'
+  })
   await fetchOrders()
 }
+
 
 const logout = () => {
   localStorage.removeItem('is_admin')
