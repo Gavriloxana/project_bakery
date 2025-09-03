@@ -72,12 +72,18 @@
               class="bg-white rounded-2xl shadow-lg border border-amber-200 transition-all duration-300 hover:shadow-xl hover:scale-105 p-4 hover:scale-105 transition-all duration-300"
             >
               <div class="relative overflow-hidden rounded-xl mb-3">
-                <img 
+<!--                 <img 
                   v-if="p.image_url" 
                   :src="API + p.image_url" 
                   :alt="p.name" 
                   class="w-full h-32 object-cover" 
-                />
+                /> -->
+                <img 
+  v-if="p.image_url" 
+  :src="p.image_url.replace(/^http:\/\//i, 'https://')" 
+  :alt="p.name" 
+  class="w-full h-32 object-cover" 
+/>
                 <div v-else class="w-full h-32 bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
                   <span class="text-3xl">🍰</span>
                 </div>
