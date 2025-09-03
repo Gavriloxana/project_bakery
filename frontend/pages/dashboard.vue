@@ -252,8 +252,8 @@
 import { ref, onMounted, computed } from 'vue'
 definePageMeta({ middleware: ['auth'] })
 
-// ใช้ API จาก .env
-const API = import.meta.env.VITE_API_URL
+// กำหนด API endpoint ตรง ๆ
+const API = "https://lab.loeitech.org/"
 
 const loading = ref(false)
 
