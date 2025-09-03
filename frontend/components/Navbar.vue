@@ -29,6 +29,12 @@
             เมนู
           </NuxtLink>
           <NuxtLink 
+            to="/contact" 
+            class="text-amber-800 hover:text-amber-600 font-medium px-4 py-2 rounded-full hover:bg-amber-50 transition-all duration-300 hover:scale-105"
+          >
+            ติดต่อ
+          </NuxtLink>
+          <NuxtLink 
             to="/cart" 
             class="relative text-amber-800 hover:text-amber-600 font-medium px-4 py-2 rounded-full hover:bg-amber-50 transition-all duration-300 hover:scale-105"
           >
@@ -71,6 +77,13 @@
           class="block py-2 px-3 rounded-lg hover:bg-amber-50 hover:text-amber-600 transition-colors duration-200"
         >
           เมนู
+        </NuxtLink>
+        <NuxtLink 
+          @click="open=false" 
+          to="/contact" 
+          class="block py-2 px-3 rounded-lg hover:bg-amber-50 hover:text-amber-600 transition-colors duration-200"
+        >
+          ติดต่อ
         </NuxtLink>
         <NuxtLink 
           @click="open=false" 
