@@ -252,8 +252,8 @@
 import { ref, onMounted, computed } from 'vue'
 definePageMeta({ middleware: ['auth'] })
 
-const config = useRuntimeConfig()
-const API = config.public.apiBase
+// กำหนด API endpoint ตรง ๆ
+const API = "https://lab.loeitech.org/"
 
 const loading = ref(false)
 
